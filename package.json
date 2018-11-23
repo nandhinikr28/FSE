@@ -1,0 +1,20 @@
+{
+  "name": "taskmanager",
+  "version": "1.0.0",
+  "description": "MEAN application - task manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nandhini",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/cli": "^7.0.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.8",
+    "nodemon": "^1.18.5"
+  },
+  "devDependencies": {}
+}
