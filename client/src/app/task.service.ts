@@ -26,7 +26,7 @@ export class TaskService {
 
   // delete tasks
   deleteTask(id) {
-    return this.http.delete('http://localhost:3000/api/tasks' + id)
+    return this.http.delete('http://localhost:3000/api/tasks/' + id)
     .pipe(map(res => res.json()));
   }
 }

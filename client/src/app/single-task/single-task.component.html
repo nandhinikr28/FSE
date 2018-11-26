@@ -1,1 +1,28 @@
-<p>single task works!!</p>
+<div class="container col-lg-10">
+    <h2 class="page-header">Task Manager</h2>
+    <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm.value)">
+      <div class="form-group">
+        <label>Task: </label>
+        <input type="text" name="Task_ID" class="form-control" [(ngModel)]="task.Task_ID">
+      </div>
+      <br>
+      <div class="form-group">
+        <label>Priority: </label>
+        <input type="range" name="priority" min="1" max="30" step="1" class="form-control" [(ngModel)]=
+        task.Priority>
+      </div>
+      <div class="form-group">
+        <label>Parent Task</label>
+        <input type="text" name="Parent_Task" class="form-control" [(ngModel)]="task.Parent_Task">
+      </div>
+      <div class="form-group">
+        <label>Start Date</label>
+        <input type="text" name="start_date" class="form-control" [(ngModel)]="task.Startdate">
+      </div>
+      <div class="form-group">
+        <label>End Date</label>
+        <input type="text" name="end_date" class="form-control" [(ngModel)]="task.Enddate">
+      </div>
+      <button type="submit" class="btn btn-success">Update Task</button>
+    </form>
+  </div>

@@ -62,7 +62,7 @@
 
 <div class="table-responsive">
   <table class="table">
-    <tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of Tasks">
       <td id="taskCell">
         <b>Task</b>
         <br/>{{task.Task_ID}}</td>
@@ -82,10 +82,10 @@
           <b>Finished</b>
           <br/>{{task.Finished}}</td>
         <td class="app-btn">
-        <button class="btn btn-default btn-block">Edit</button>
+        <button class="btn btn-default btn-block nav-link-edit" [routerLink]="['/update-task']">Edit</button>
       </td>
       <td class="app-btn">
-        <button class="btn btn-default btn-block">End Task</button>
+        <button class="btn btn-default btn-block" (click) = 'deleteTask(task._id)' >End Task</button>
       </td>
     </tr>
   </table>
