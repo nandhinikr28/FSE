@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {TaskService} from '../task.service';
 import {tasks} from '../task';
+import{Http, Headers} from '@angular/http'
+import { HttpClient } from 'selenium-webdriver/http';
+import { Router } from '@angular/router/src/router';
+import { ActivatedRoute } from '@angular/router/src/router_state';
 
 
 @Component({
@@ -10,38 +14,30 @@ import {tasks} from '../task';
   providers: [TaskService]
 })
 export class SingleTaskComponent implements OnInit {
-  tasks: tasks[];
-  task: tasks;
-  Task_ID:string;
-    Start_date:Date;
-    End_date:Date;
-    Priority: number =0 ;
-    Finished:boolean;
-    Parent_Task:string;
+  task = {};
 
+  constructor(private taskservice: TaskService, private http: HttpClient,
+  private router: Router, private route: ActivatedRoute) { }
 
+  
+  ngOnInit() {
+    this.getTask(this.route.snapshot.params['id']);
 
-  constructor(private taskservice: TaskService) { }
+  }
 
-  deleteTask(id:any)
-  {
-    var tasks = this.tasks;
-    this.taskservice.deleteTask(id)
-    .subscribe(data=>{
-      if(data.n==1)
-      {
-        for (var i =0; i< tasks.length;i++)
-        {
-          if(tasks[i]._id == id)
-          {
-            tasks.splice(i,1);
-          }
-        }
-      }
+  getTask(id){
+    this.http.get('/tasks/'+id).subscribe(data => {
+      this.task = data;
     });
   }
-  ngOnInit() {
 
+  updateTask(id,data){
+    this.http.put('/tasks/'+id,data)
+    .subscribe(res =>{
+      let id = res['_id'];
+      this.router.navigate(['/tasks',id]);
+    }, (err)=>{
+      console.log(err);
+    });
   }
-
 }

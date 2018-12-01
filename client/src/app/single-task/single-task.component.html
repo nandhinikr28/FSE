@@ -1,6 +1,6 @@
 <div class="container col-lg-10">
     <h2 class="page-header">Task Manager</h2>
-    <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm.value)">
+    <form #taskForm="ngForm" (ngSubmit)="updateTask(task._id)">
       <div class="form-group">
         <label>Task: </label>
         <input type="text" name="Task_ID" class="form-control" [(ngModel)]="task.Task_ID">
