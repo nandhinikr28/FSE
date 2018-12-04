@@ -10,6 +10,23 @@ router.get('/tasks',(req,res,next)=>{
     })
 });
 
+//retrieving data based on data
+router.get('/tasks/:id',function(req,res,next){
+    Task.findById(req.params.id)
+    .then(doc=>{
+        if(!doc){ return res.status(404).end();}
+        return res.status(200).json(doc);
+    })
+    .catch(err => next(err));
+})
+
+//update tasks
+router.put('/tasks/:id', function(req,res,next){
+    Task.findByIdAndUpdate(req.params.id, req.body, function(err,post){
+        if(err) return next(err);
+        res.json(post);
+    });
+});
 //add tasks
 router.post('/tasks',(req,res,next)=>{
     //logic to add tasks

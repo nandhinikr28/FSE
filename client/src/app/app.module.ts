@@ -12,6 +12,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { RouterModule } from '@angular/router';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { SingleTaskComponent } from './single-task/single-task.component';
+import { HttpClientModule } from '@angular/common/http/';
 
 
 
@@ -27,6 +28,7 @@ import { SingleTaskComponent } from './single-task/single-task.component';
     AppRoutingModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     RouterModule,
   ],
   providers: [],
