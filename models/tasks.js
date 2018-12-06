@@ -23,7 +23,7 @@ const TaskParentSchema = mongoose.Schema({
         default: false
     },
     Parent_Task:{
-        type: String, ref: 'Task' , required: false
+        type: mongoose.mongo.ObjectId, ref: 'Task' , required: false
     }
 });
 

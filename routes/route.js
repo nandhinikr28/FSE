@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Task = require('../models/tasks');
+var mongoose = require('mongoose');
 
 //retrieving data
 router.get('/tasks',(req,res,next)=>{
@@ -36,7 +37,7 @@ router.post('/tasks',(req,res,next)=>{
         Start_date: req.body.start_date,
         End_date: req.body.end_date,
         Priority: req.body.priority,
-        Parent_Task: req.body.Parent_Task
+        Parent_Task: mongoose.mongo.ObjectId(req.body.Parent_Task)
     });
 
     newTask.save((err,Task)=>{
