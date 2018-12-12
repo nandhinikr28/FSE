@@ -9,12 +9,19 @@ import { Promise } from 'q';
 })
 export class TaskService {
   private apiUrl  = 'http://localhost:3000/api/tasks';
+  options;
 
   constructor(private http: Http) { }
 
   // retrieving tasks
   getTasks() {
     return this.http.get('http://localhost:3000/api/tasks')
+    .pipe(map(res => res.json()));
+  }
+
+  // retrieving single task
+  getTaskById(id){
+    return this.http.get('http://localhost:3000/api/tasks/'+id, this.options)
     .pipe(map(res => res.json()));
   }
 
@@ -34,12 +41,21 @@ export class TaskService {
   }
 
  //update tasks
- updateTasks(task:any){
+/* updateTasks(task){
+   console.log("updating task"+task._id);
    return this.http
           .put(this.apiUrl, task)
           .toPromise()
           .then(this.handleData)
+ }*/
+
+ updateTasks(task){
+   console.log("updating task"+task._id);
+   return this.http.put('http://localhost:3000/api/tasks/'+task._id, task, this.options)
+   .pipe(map(res => res.json()));
  }
+
+
 
   // delete tasks
   deleteTask(id) {

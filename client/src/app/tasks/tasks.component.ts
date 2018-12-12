@@ -12,6 +12,7 @@ import {tasks} from '../task';
 export class TasksComponent implements OnInit {
   createTasks = [];
   task: tasks = new tasks();
+  Priority: number=0;
 
 
   constructor(private taskservice: TaskService) { }
@@ -31,6 +32,7 @@ export class TasksComponent implements OnInit {
       End_date: value.end_date,
       Parent_Task: value.Parent_Task
     };
+    console.log("priority value");
     this.taskservice.addTasks(newTask)
     .subscribe(task => {
       this.createTasks.push(task);

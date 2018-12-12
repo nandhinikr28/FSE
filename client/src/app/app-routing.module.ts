@@ -7,7 +7,7 @@ import { SingleTaskComponent } from './single-task/single-task.component';
 const appRouter: Routes = [
   { path: 'view-task', component: ViewTaskComponent },
   { path: 'add-task', component: TasksComponent },
-  {path: 'update-task', component: SingleTaskComponent }
+  {path: 'update-task/:id', component: SingleTaskComponent }
 ];
 
 @NgModule({

@@ -20,19 +20,29 @@ export class SingleTaskComponent implements OnInit {
   tasks:any = {};
   tasktoedit:any = {};
   apiMessage:string;
+  id: number;
+  private sub: any;
+  Task: tasks;
+  message;
+  loading = true;
+  newdata = [];
 
   constructor(private taskservice: TaskService, private http: HttpClient,
   private router: Router, private route: ActivatedRoute) { }
 
   
   ngOnInit() {
-    
+    this.sub = this.route.snapshot.params;
+    console.log("id value =" +this.sub.id);
+    this.taskservice.getTaskById(this.sub.id).subscribe(data => 
+      this.newdata = data);
+  
 
   }
-
-  updateTask(Task:any):void{
+/*  updateTask(Task:any):void{
     if(!Task){return;}
     Task.id =this.tasktoedit._id;
+    console.log("Task id", Task.id);
     this.taskservice.updateTasks(Task)
           .then( td => {
             const updateTask = this.tasks.map(t=>{
@@ -46,4 +56,15 @@ export class SingleTaskComponent implements OnInit {
           })
   }
   
+*/
+  updateTask(){
+    this.taskservice.updateTasks(this.newdata).subscribe(data =>{
+      if(!data.success){
+        this.apiMessage = "data not found";
+
+      }else{
+        this.apiMessage = "data found";
+      }
+    });
+  }
 }

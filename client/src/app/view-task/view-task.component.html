@@ -74,15 +74,16 @@
         <br/>{{task.Priority}}</td>
       <td class="dateCell">
         <b>Start Date</b>
-        <br/>{{task.Start_Date | date:"dd-MMM-yyyy"}}</td>
+        <br/>{{task.Start_Date | date:"dd-MM-yyyy"}}</td>
       <td class="dateCell">
         <b>End Date</b>
-        <br/>{{task.End_Date | date:"dd-MMM-yyyy"}}</td>
+        <br/>{{task.End_Date | date:"dd-MM-yyyy"}}</td>
         <td class="dateCell">
           <b>Finished</b>
           <br/>{{task.Finished}}</td>
         <td class="app-btn">
-        <button class="btn btn-default btn-block nav-link-edit" [routerLink]="['/update-task']">Edit</button>
+        <button class="btn btn-default btn-block nav-link-edit" 
+        [routerLink]="['/update-task/'+task._id]">Edit</button>
       </td>
       <td class="app-btn">
         <button class="btn btn-default btn-block" (click) = 'deleteTask(task._id)' >End Task</button>

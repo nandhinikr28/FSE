@@ -14,7 +14,7 @@ const TaskParentSchema = mongoose.Schema({
         default: Date.now
     },
     Priority:{
-        type: Number,
+        type:Number,
         min: 0,
         max: 30
     },
