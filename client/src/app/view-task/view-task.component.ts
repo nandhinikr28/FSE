@@ -1,19 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import {TaskService} from '../task.service';
 import {tasks} from '../task';
+import {SearchtextPipe} from '../searchtext.pipe';
+import{FormControl} from '@angular/forms';
+import{FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-view-task',
   templateUrl: './view-task.component.html',
   styleUrls: ['./view-task.component.css'],
-  providers: [TaskService]
+  providers: [TaskService, DatePipe]
 })
 export class ViewTaskComponent implements OnInit {
 
   Tasks = [];
-  task: tasks = new tasks();
+  tasklist:any;
+  users: tasks[] = [];
+  Start_date:any;
+  
 
-  constructor(private taskservice: TaskService) { 
+  task: tasks = new tasks();
+  //search:FormControl = new FormControl();
+  results;
+  response;
+
+  constructor(private taskservice: TaskService, public datepipe: DatePipe) { 
     
     
   }
@@ -37,8 +49,23 @@ export class ViewTaskComponent implements OnInit {
 
   ngOnInit() {
     this.taskservice.getTasks()
-    .subscribe( task =>
-      this.Tasks = task);
-  }
+   /* .subscribe( task =>
+      this.Tasks = task
+   )*/
+   .subscribe((data: tasks[])=>{this.Tasks = data,
+  this.tasklist = data});
+
+    
+   console.log("parent"+this.Tasks);
+   console.log("child"+this.tasklist);
+   
+   
+
+    /*  this.search.valueChanges
+      .subscribe(search=>this.taskservice.search(search)
+      .subscribe(response =>this.results =
+      this.response.json().artists.items)
+      )};*/
+    };
 
 }

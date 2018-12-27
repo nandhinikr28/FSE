@@ -27,9 +27,12 @@ export class TaskService {
 
   // add tasks
   addTasks(newTask) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/api/tasks', newTask, { headers: headers });
+    console.log("addtask", newTask.Task_ID, newTask.Parent_Task,
+  newTask.Priority, newTask.Start_date, newTask.End_date);
+   /*const headers = new Headers();
+    headers.append('Content-Type', 'application/json');*/
+    return this.http.post('http://localhost:3000/api/tasks', newTask)
+    //.pipe(map(res=>res.json()));
 
   }
 
@@ -38,6 +41,12 @@ export class TaskService {
     let body = res.json();
     console.log(body);
     return body || {};
+  }
+
+  search(query){
+    return this.http.get('http://localhost:3000/api/tasks/'+query+'%', this.options)
+    .pipe(map(res => res.json()));
+
   }
 
  //update tasks

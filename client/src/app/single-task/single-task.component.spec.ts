@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SingleTaskComponent } from './single-task.component';
+//import{FormControl} from '@angular/forms';
+import{FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http/';
+import { RouterModule } from '@angular/router';
+import {TaskService} from '../task.service';
+import {RouterTestingModule} from '@angular/router/testing';
+
 
 describe('SingleTaskComponent', () => {
   let component: SingleTaskComponent;
@@ -8,7 +16,10 @@ describe('SingleTaskComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingleTaskComponent ]
+      declarations: [ SingleTaskComponent ],
+      imports: [ FormsModule, ReactiveFormsModule, HttpModule,
+      HttpClientModule,RouterModule, RouterTestingModule ],
+      providers: [TaskService]
     })
     .compileComponents();
   }));

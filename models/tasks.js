@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const TaskParentSchema = mongoose.Schema({
     Task_ID:{
         type: String,
-        required: true
+        required: true,
+        dropDups: true
     },
     Start_date:{
         type: Date,
@@ -23,8 +24,8 @@ const TaskParentSchema = mongoose.Schema({
         default: false
     },
     Parent_Task:{
-        type: mongoose.mongo.ObjectId, ref: 'Task' , required: false
+        type: mongoose.Schema.ObjectId, ref: 'Task1' , required: false
     }
 });
 
-const Task = module.exports = mongoose.model('Task',TaskParentSchema);
+const Task = module.exports = mongoose.model('Task1',TaskParentSchema);

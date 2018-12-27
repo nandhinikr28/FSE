@@ -19,13 +19,15 @@ export class SingleTaskComponent implements OnInit {
   task = {};
   tasks:any = {};
   tasktoedit:any = {};
+  public newdata:any = {};
   apiMessage:string;
   id: number;
+  //search: any={};
   private sub: any;
   Task: tasks;
   message;
   loading = true;
-  newdata = [];
+  //newdata = [];
 
   constructor(private taskservice: TaskService, private http: HttpClient,
   private router: Router, private route: ActivatedRoute) { }
@@ -34,11 +36,21 @@ export class SingleTaskComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.snapshot.params;
     console.log("id value =" +this.sub.id);
-    this.taskservice.getTaskById(this.sub.id).subscribe(data => 
-      this.newdata = data);
-  
-
-  }
+    this.taskservice.getTaskById(this.sub.id).subscribe(data =>{ 
+      if(data)
+      {
+      this.newdata = data;
+      
+      console.log("newdata", this.newdata.Task_ID );
+      //var parent = FilterparentPipe(this.newdata.Parent_Task, this.newdata._id);
+      //console.log("parent ", parent);
+    
+      }else{
+        console.log("failed to get");
+      }
+    } );
+    console.log("newdata1", this.newdata.Parent_Task);
+    }
 /*  updateTask(Task:any):void{
     if(!Task){return;}
     Task.id =this.tasktoedit._id;
@@ -59,11 +71,14 @@ export class SingleTaskComponent implements OnInit {
 */
   updateTask(){
     this.taskservice.updateTasks(this.newdata).subscribe(data =>{
-      if(!data.success){
-        this.apiMessage = "data not found";
+      if(!data){
+        console.log("error in updating task ", this.newdata.Task_ID);
+        this.apiMessage = "error in updating task";
 
       }else{
-        this.apiMessage = "data found";
+        console.log("updated task", this.newdata.Task_ID);
+        this.router.navigate(['/', 'view-task']);
+        this.apiMessage = "data updated";
       }
     });
   }

@@ -11,7 +11,7 @@ var app = express();
 const route = require('./routes/route');
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost:27017/TaskManager_FSE', {useNewUrlParser: true},function (err){
+mongoose.connect('mongodb://localhost:27017/TaskManager_FSE1', {useNewUrlParser: true},function (err){
     if(!!err){
         console.log("not able to connect");
         console.error(err);
