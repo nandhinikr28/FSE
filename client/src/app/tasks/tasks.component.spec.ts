@@ -25,6 +25,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 
 
+
 /*@NgModule ({
   declarations: [TasksComponent],
   entryComponents
@@ -34,6 +35,18 @@ import {Pipe, PipeTransform} from '@angular/core';
 describe('TasksComponent', () => {
   let component: TasksComponent;
   let fixture: ComponentFixture<TasksComponent>;
+
+
+  class TestTaskComponent{
+    tasks: tasks[] = [{
+      Task_ID:"test",
+      Parent_Task:"fse",
+      Priority:10,
+      Finished: false,
+      Start_date: "28-12-2018",
+      End_date: "30-12-2018"
+    }];
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -59,7 +72,8 @@ describe('TasksComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('should have a text property'), () => {
+  it('should have a number property'), () => {
     expect(component.Priority).toEqual(0);
   }
+  
 });
